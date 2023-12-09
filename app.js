@@ -37,28 +37,6 @@ app.ws('/flutter', (ws) => {
     console.log(`Received from Flutter app: ${newMessage}`);
     const message = newMessage.toString();
 
-//     if(message.includes("Lights")){
-//        let value = message.split(" ");
-//        lightSwitch = value[1];       
-//        espClient.forEach((espSocket) => {
-//                  espSocket.send(`Light ${lightSwitch}`)
-//                    });
-
-//     }else if(message.includes("Door")){
-//        let value = message.split(" ");
-//        doorMode = value[1];
-//        espClient.forEach((espSocket) => {
-//                  espSocket.send(`Door ${doorMode}`) 
-//                    });
-
-//     }else{
-//        let value = message.split(" ");
-//        surveillanceMode = value[1];
-//        espClient.forEach((espSocket) => {
-//                  espSocket.send(`Surveillance ${surveillanceMode}`)   
-//                    });     
-//     }
-
   });
 
 
@@ -69,6 +47,6 @@ app.ws('/flutter', (ws) => {
 
 });
 
-app.listen(port, '172.20.10.3', () => {
+app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
 });
