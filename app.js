@@ -21,11 +21,14 @@ espClient.push(ws);
                
 ws.on('message', (message) => {
  console.log(`Received from ESP32: ${message}`);
-// Forward the message to all Flutter clients
+
+ // Forward the message to all Flutter clients
    wsClients.forEach((flutterSocket) => {
    flutterSocket.send(message);
      });
    });
+
+
 });
 
 app.ws('/flutter', (ws) => {
@@ -36,6 +39,11 @@ app.ws('/flutter', (ws) => {
 
     console.log(`Received from Flutter app: ${newMessage}`);
     const message = newMessage.toString();
+
+    // Forward the message to all Flutter clients
+    espClient.forEach((espSocket) => {
+      espSocket.send(message);
+        });
 
   });
 
