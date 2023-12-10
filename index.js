@@ -1,12 +1,6 @@
-// const WebSocket = require('ws');
-// const wss = new WebSocket.Server({ port: 8080 });
 const express = require('express');
 const expressWs = require('express-ws');
 const app = express();
-
-let lightSwitch;
-let doorMode;
-let surveillanceMode;
 
 expressWs(app);
 
@@ -40,7 +34,10 @@ app.ws('/flutter', (ws) => {
     console.log(`Received from Flutter app: ${newMessage}`);
     const message = newMessage.toString();
 
-    // Forward the message to all Flutter clients
+    wsClients.forEach((flutterSocket) => {
+      flutterSocket.send(`Connected`)
+        });
+
     espClient.forEach((espSocket) => {
       espSocket.send(message);
         });
