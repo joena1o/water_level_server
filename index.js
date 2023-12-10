@@ -26,6 +26,7 @@ ws.on('message', (message) => {
 });
 
 app.ws('/flutter', (ws) => {
+  
   console.log('Flutter app connected');
   wsClients.push(ws);
 
